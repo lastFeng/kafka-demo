@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.kafkademo.demo.consumer.multithread;
+package com.example.kafkademo.demo.consumer.multithread.oneconsumer;
 
 import com.example.kafkademo.demo.Constant;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

@@ -28,7 +28,6 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 import static com.example.kafkademo.demo.Constant.LOOP_NUM;
-import static com.example.kafkademo.demo.Constant.TOPIC_NAME;
 
 /**
  * <p> Title: </p>
@@ -56,14 +55,14 @@ public class ProducerTest {
         // 同步发送数据
         for (int i = 0; i < LOOP_NUM; i++) {
             // 发送一个ProducerRecord， topic-key-value | topic-value （前者自己制定key，就会放入相应的partition中，而不指定key通过轮询均匀分布）
-            RecordMetadata recordMetadata = producer.send(new ProducerRecord<>("my-topic", Integer.toString(i),
+            RecordMetadata recordMetadata = producer.send(new ProducerRecord<>("thread-topic", Integer.toString(i),
                 Integer.toString(i))).get();
             // 可以对返回的结果进行操作，获取对应partition、offset等信息
         }
 
         // 异步发送数据
         for (int i = 0; i < LOOP_NUM; i++) {
-            producer.send(new ProducerRecord<>(TOPIC_NAME, Integer.toString(i), Integer.toString(i)),
+            producer.send(new ProducerRecord<>("thread-topic", Integer.toString(i), Integer.toString(i)),
                 (metadata, exception) -> {
                 // 发送成功与否只要判断exception是否为空即可
                 if (exception == null) {
