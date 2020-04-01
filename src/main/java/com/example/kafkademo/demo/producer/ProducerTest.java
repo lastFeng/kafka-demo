@@ -48,7 +48,7 @@ public class ProducerTest {
         Serializer<String> keyValueSerializer = new StringSerializer();
 
         // 设置producer的属性, 显示配置key|value序列化于配置属性中
-        Producer<String, String> producer = new KafkaProducer<String, String>(properties);
+        Producer<String, String> producer = new KafkaProducer<String, String>(properties, keyValueSerializer, keyValueSerializer);
 
         // 设置producer的属性，生成中配置key|value序列化
         Producer<String, String> producerShade = new KafkaProducer<String, String>(properties, keyValueSerializer, keyValueSerializer);
